@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pawchy-downloader"
+version = "0.1.0"
+description = "A bulk downloader for Pawchive creator and post URLs"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "Yusuf Hasan Saygili" }]
+dependencies = [
+  "aiohttp>=3.9,<4",
+  "rich>=13,<15",
+]
+
+[project.optional-dependencies]
+build = ["pyinstaller>=6,<7"]
+
+[project.scripts]
+pawchy = "pawchy_downloader.cli:main"
+pawchy-ui = "pawchy_downloader.webui:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
