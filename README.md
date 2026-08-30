@@ -1,10 +1,10 @@
-# Pawchy Downloader
+# Pawchive Downloader
 
 A Windows downloader for Pawchive creator and post URLs. It uses Pawchive's public API and downloads covers and attachments concurrently.
 
 ## Windows app
 
-Download `Pawchy Downloader.exe` and run it. The app opens a local page in your browser; no data is sent anywhere except Pawchive.
+Download `Pawchive Downloader.exe` and run it. The app opens a local page in your browser; no data is sent anywhere except Pawchive.
 
 Paste one or more Pawchive URLs, choose an output folder, and press **Start download**. The dashboard shows completed, failed, skipped, and queued files while the job is running.
 
@@ -34,19 +34,19 @@ python -m pip install -e .
 Download a post:
 
 ```powershell
-pawchy "https://pawchive.pw/fanbox/user/22291115/post/12511018"
+pawchive "https://pawchive.pw/fanbox/user/22291115/post/12511018"
 ```
 
 Download a creator profile:
 
 ```powershell
-pawchy "https://pawchive.pw/fanbox/user/22291115" -o "D:\Pawchive"
+pawchive "https://pawchive.pw/fanbox/user/22291115" -o "D:\Pawchive"
 ```
 
 Read URLs from a file:
 
 ```powershell
-pawchy -i urls.txt --concurrency 8
+pawchive -i urls.txt --concurrency 8
 ```
 
 Useful options:

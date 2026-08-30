@@ -7,12 +7,12 @@ $arguments = @(
   '--clean',
   '--onefile',
   '--windowed',
-  '--name', 'Pawchy Downloader',
+  '--name', 'Pawchive Downloader',
   '--paths', "$projectRoot\src",
   '--distpath', $projectRoot,
   '--workpath', "$projectRoot\build\pyinstaller",
   '--specpath', "$projectRoot\build",
-  "$projectRoot\pawchy_exe.py"
+  "$projectRoot\pawchive_exe.py"
 )
 
 $localTools = Join-Path $projectRoot '.build-tools'
@@ -21,5 +21,12 @@ if (Test-Path -LiteralPath "$localTools\PyInstaller") {
 } else {
   python -m PyInstaller @arguments
 }
+if ($LASTEXITCODE -ne 0) {
+  throw "PyInstaller failed with exit code $LASTEXITCODE"
+}
 
-Write-Host "EXE hazır: $projectRoot\Pawchy Downloader.exe"
+$exePath = Join-Path $projectRoot 'Pawchive Downloader.exe'
+if (-not (Test-Path -LiteralPath $exePath)) {
+  throw "Build finished without creating $exePath"
+}
+Write-Host "EXE ready: $exePath"

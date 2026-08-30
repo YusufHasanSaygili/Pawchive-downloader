@@ -1,6 +1,6 @@
 import unittest
 
-from pawchy_downloader.urls import parse_target
+from pawchive_downloader.urls import parse_target
 
 
 class ParseTargetTests(unittest.TestCase):

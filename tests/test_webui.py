@@ -5,7 +5,7 @@ import time
 from pathlib import Path
 from unittest.mock import patch
 
-from pawchy_downloader.webui import DashboardState, _download_worker
+from pawchive_downloader.webui import DashboardState, _download_worker
 
 
 class DashboardStateTests(unittest.TestCase):
@@ -39,7 +39,7 @@ class DashboardStateTests(unittest.TestCase):
         async def fake_run(*_args, **_kwargs):
             await asyncio.sleep(30)
 
-        with patch("pawchy_downloader.webui.run", fake_run):
+        with patch("pawchive_downloader.webui.run", fake_run):
             worker = threading.Thread(target=_download_worker, args=([], None, state))  # type: ignore[arg-type]
             worker.start()
             deadline = time.monotonic() + 2

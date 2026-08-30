@@ -1,6 +1,6 @@
 import unittest
 
-from pawchy_downloader.models import Post
+from pawchive_downloader.models import Post
 
 
 class PostTests(unittest.TestCase):

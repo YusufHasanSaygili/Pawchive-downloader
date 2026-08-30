@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pawchy-downloader"
+name = "pawchive-downloader"
 version = "0.1.0"
 description = "A bulk downloader for Pawchive creator and post URLs"
 readme = "README.md"
@@ -19,8 +19,8 @@ dependencies = [
 build = ["pyinstaller>=6,<7"]
 
 [project.scripts]
-pawchy = "pawchy_downloader.cli:main"
-pawchy-ui = "pawchy_downloader.webui:main"
+pawchive = "pawchive_downloader.cli:main"
+pawchive-ui = "pawchive_downloader.webui:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

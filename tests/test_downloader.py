@@ -4,9 +4,9 @@ from tempfile import TemporaryDirectory
 
 from rich.console import Console
 
-from pawchy_downloader.downloader import DownloadEngine, DownloadOptions, safe_component
-from pawchy_downloader.history import HistoryStore
-from pawchy_downloader.models import Creator, Post
+from pawchive_downloader.downloader import DownloadEngine, DownloadOptions, safe_component
+from pawchive_downloader.history import HistoryStore
+from pawchive_downloader.models import Creator, Post
 
 
 class FilenameTests(unittest.TestCase):
