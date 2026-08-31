@@ -11,6 +11,7 @@ Paste one or more Pawchive URLs, choose an output folder, and press **Start down
 **Stop download** cancels the current job without deleting partial files. Running the same download again resumes those files.
 
 Files are saved in one folder per creator. Post IDs are added to filenames to prevent collisions.
+Enable **Separate folders by post** if you want each post stored in its own subfolder.
 
 ## Supported URLs
 
@@ -56,6 +57,7 @@ Useful options:
 - `--no-cover` or `--no-attachments` selects which files to download.
 - `--overwrite` downloads existing files again.
 - `--metadata` saves the API response for each post.
+- `--post-folders` creates a separate subfolder for each post.
 - `--dry-run` prints the download plan without writing files.
 
 ## Build the EXE

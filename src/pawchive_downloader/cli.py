@@ -36,6 +36,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--no-cover", action="store_true", help="Do not download post cover files")
     parser.add_argument("--no-attachments", action="store_true", help="Do not download attachments")
     parser.add_argument("--metadata", action="store_true", help="Save post data as post.json")
+    parser.add_argument("--post-folders", action="store_true", help="Create a separate folder for each post")
     return parser
 
 
@@ -89,6 +90,7 @@ def main(argv: list[str] | None = None) -> None:
         include_cover=not args.no_cover,
         include_attachments=not args.no_attachments,
         metadata=args.metadata,
+        separate_post_folders=args.post_folders,
     )
     options = RunOptions(
         download=download,

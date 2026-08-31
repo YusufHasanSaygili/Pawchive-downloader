@@ -53,6 +53,7 @@ class DownloadOptions:
     include_cover: bool = True
     include_attachments: bool = True
     metadata: bool = False
+    separate_post_folders: bool = False
 
 
 @dataclass(slots=True)
@@ -107,7 +108,11 @@ class DownloadEngine:
 
     def _post_folder(self, post: Post, creator: Creator) -> Path:
         creator_folder = safe_component(f"{creator.name} [{creator.service}-{creator.id}]")
-        return self.options.output / creator_folder
+        folder = self.options.output / creator_folder
+        if self.options.separate_post_folders:
+            post_folder = safe_component(f"{post.title} [{post.id}]", fallback=f"Post [{post.id}]", max_length=150)
+            folder /= post_folder
+        return folder
 
     def _jobs_for_post(self, post: Post, creator: Creator) -> list[DownloadJob]:
         folder = self._post_folder(post, creator)
