@@ -24,6 +24,10 @@ pawchive-ui = "pawchive_downloader.webui:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.package-data]
+pawchive_downloader = ["assets/*.png"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

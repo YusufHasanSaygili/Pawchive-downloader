@@ -10,8 +10,13 @@ Paste one or more Pawchive URLs, choose an output folder, and press **Start down
 
 **Stop download** cancels the current job without deleting partial files. Running the same download again resumes those files.
 
-Files are saved in one folder per creator. Post IDs are added to filenames to prevent collisions.
-Enable **Separate folders by post** if you want each post stored in its own subfolder.
+Files are saved in one folder per creator, and post IDs are added to filenames to prevent collisions.
+Tick **One folder per post** to give every post of a creator its own folder instead, named
+`YYYY-MM-DD Title [post id]`. Inside those folders the files keep their original names.
+
+Each output folder keeps a `.pawchive-history.sqlite3` file recording what has been downloaded, so a
+file that moved or was already fetched under another name is reused instead of downloaded again. A
+history file written by an older version of the app is picked up automatically on the first run.
 
 ## Supported URLs
 
@@ -57,7 +62,7 @@ Useful options:
 - `--no-cover` or `--no-attachments` selects which files to download.
 - `--overwrite` downloads existing files again.
 - `--metadata` saves the API response for each post.
-- `--post-folders` creates a separate subfolder for each post.
+- `--post-folders` saves every post of a creator into its own folder.
 - `--dry-run` prints the download plan without writing files.
 
 ## Build the EXE
@@ -70,7 +75,7 @@ python -m pip install -e ".[build]"
 ## Tests
 
 ```powershell
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -t tests -v
 ```
 
 Only download content you are allowed to access. Keep concurrency at a reasonable value to avoid unnecessary load on Pawchive.
