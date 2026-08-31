@@ -41,6 +41,7 @@ async def run(
         session_cookie=options.session_cookie,
         timeout=options.timeout,
         retries=options.retries,
+        connection_limit=options.download.concurrency,
     ) as api:
 
         async def collect(target: Target) -> None:
@@ -63,10 +64,12 @@ async def run(
         if errors and len(errors) == len(results):
             raise RuntimeError("No source could be read")
 
-        console.print(f"[bold]Found {len(posts)} posts and " f"{sum(len(p.remote_files(options.download.include_cover, options.download.include_attachments)) for p in posts.values())} files.[/bold]")
         if not api.session:
             raise RuntimeError("Download session is unavailable")
         with HistoryStore(options.history_file, enabled=not options.download.dry_run) as history:
+            # The engine reports the post and file counts once it has built the
+            # job list. Expanding every post's file list here as well meant
+            # doing that work twice for nothing.
             engine = DownloadEngine(api.session, history, options.download, console, progress_callback)
             return await engine.run(list(posts.values()), creators)
 

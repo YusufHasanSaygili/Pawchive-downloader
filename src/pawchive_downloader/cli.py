@@ -12,6 +12,7 @@ from rich.markup import escape
 
 from .app import RunOptions, run
 from .downloader import DownloadOptions
+from .history import HISTORY_FILENAME
 from .urls import parse_target, read_url_file
 
 
@@ -36,6 +37,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--no-cover", action="store_true", help="Do not download post cover files")
     parser.add_argument("--no-attachments", action="store_true", help="Do not download attachments")
     parser.add_argument("--metadata", action="store_true", help="Save post data as post.json")
+    parser.add_argument(
+        "--post-folders",
+        action="store_true",
+        help="Save every post of a creator into its own folder",
+    )
     return parser
 
 
@@ -79,7 +85,7 @@ def main(argv: list[str] | None = None) -> None:
             seen.add(target.key)
 
     output = args.output.expanduser().resolve()
-    history_file = (args.history.expanduser().resolve() if args.history else output / ".pawchive-history.sqlite3")
+    history_file = (args.history.expanduser().resolve() if args.history else output / HISTORY_FILENAME)
     download = DownloadOptions(
         output=output,
         concurrency=args.concurrency,
@@ -89,6 +95,7 @@ def main(argv: list[str] | None = None) -> None:
         include_cover=not args.no_cover,
         include_attachments=not args.no_attachments,
         metadata=args.metadata,
+        post_folders=args.post_folders,
     )
     options = RunOptions(
         download=download,
