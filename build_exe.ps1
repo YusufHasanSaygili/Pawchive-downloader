@@ -9,6 +9,7 @@ $arguments = @(
   '--windowed',
   '--name', 'Pawchive Downloader',
   '--paths', "$projectRoot\src",
+  '--add-data', "$projectRoot\src\pawchive_downloader\assets\mascot.png;pawchive_downloader\assets",
   '--distpath', $projectRoot,
   '--workpath', "$projectRoot\build\pyinstaller",
   '--specpath', "$projectRoot\build",
