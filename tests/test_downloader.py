@@ -63,6 +63,15 @@ class FilenameTests(unittest.TestCase):
             self.assertEqual(job.destination.parent, Path(folder) / "Artist [patreon-7]")
             self.assertEqual(job.destination.name, "image [99].png")
 
+    def test_optional_post_folders(self):
+        with TemporaryDirectory() as folder:
+            post = Post.from_api({"id":"99","user":"7","service":"patreon","title":"My / Post","file":{"name":"image.png","path":"/aa/hash.png"},"attachments":[]})
+            creator = Creator(id="7", service="patreon", name="Artist")
+            options = DownloadOptions(Path(folder), post_folders=True)
+            engine = DownloadEngine(None, HistoryStore(Path(folder)/"history",False), options, Console())  # type: ignore[arg-type]
+            job = engine._jobs_for_post(post, creator)[0]
+            self.assertEqual(job.destination.parent, Path(folder)/"Artist [patreon-7]"/"My _ Post [99]")
+
 
 class PostFolderTests(unittest.TestCase):
     def test_each_post_gets_its_own_folder(self):

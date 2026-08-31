@@ -5,10 +5,14 @@ import time
 from pathlib import Path
 from unittest.mock import patch
 
-from pawchive_downloader.webui import DashboardState, _download_worker
+from pawchive_downloader.webui import DashboardState, PAGE, _download_worker
 
 
 class DashboardStateTests(unittest.TestCase):
+    def test_post_folder_toggle_is_available_and_off_by_default(self):
+        self.assertIn('id="postFolders" type="checkbox"', PAGE)
+        self.assertNotIn('id="postFolders" type="checkbox" checked', PAGE)
+
     def test_live_counters_and_queue(self):
         state = DashboardState(Path("downloads"))
         state.begin(Path("downloads"))
