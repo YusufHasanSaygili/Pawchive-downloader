@@ -10,6 +10,9 @@ $arguments = @(
   '--name', 'Pawchive Downloader',
   '--paths', "$projectRoot\src",
   '--add-data', "$projectRoot\src\pawchive_downloader\assets\mascot.png;pawchive_downloader\assets",
+  # Pillow is only ever a build-time tool here; nothing in the app imports it,
+  # and letting it in adds ~6MB to the binary.
+  '--exclude-module', 'PIL',
   '--distpath', $projectRoot,
   '--workpath', "$projectRoot\build\pyinstaller",
   '--specpath', "$projectRoot\build",
